@@ -6,15 +6,19 @@ int main()
 	int a;
 	cin >> a;
 	int* arr = new int[a];
+	int* dp = new int[a];
 	for (int i = 0; i < a; i++)
 	{
 		cin >> arr[i];
 	}
-	int best = 0, sum = 0;
+	dp[0] = arr[0];
+	int ans = dp[0];
 	for (int j = 0; j < a; j++)
 	{
-		sum = max(arr[j], sum + arr[j]);
-		best = max(best, sum);
+		dp[j] = max(arr[j], dp[j-1] + arr[j]);
+		ans = max(ans, dp[j]);
 	}
-	cout << best;
+	cout << ans;
+
+	return 0;
 }
